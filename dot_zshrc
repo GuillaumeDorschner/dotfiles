@@ -1,0 +1,26 @@
+export ZSH="$HOME/.oh-my-zsh"
+
+ZSH_THEME="robbyrussell"
+
+plugins=(git sudo kubectl docker docker-compose doctl)
+
+source $ZSH/oh-my-zsh.sh
+neofetch --ascii ~/.config/neofetch/ascii-art.txt
+source <(kubectl completion zsh)
+source <(helm completion zsh)
+
+alias finder='open -a Finder .'
+alias python='python3'
+alias brewup='brew update && brew upgrade'
+
+dcks() {
+    docker-compose down -v
+    docker-compose up "$@"
+}
+
+mcd() {
+  mkdir -p "$1" && cd "$1"
+}
+
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+export PATH="/usr/local/opt/ruby/bin:$PATH"
